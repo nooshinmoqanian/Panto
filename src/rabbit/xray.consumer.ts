@@ -1,7 +1,7 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { RabbitSubscribe } from '@golevelup/nestjs-rabbitmq';
-import { SignalsService } from '../signals/signals.service';
+import { Injectable, Logger } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
+import { RabbitSubscribe } from "@golevelup/nestjs-rabbitmq";
+import { SignalsService } from "../signals/signals.service";
 
 @Injectable()
 export class XrayConsumer {
@@ -12,13 +12,13 @@ export class XrayConsumer {
     private readonly cfg: ConfigService,
     private readonly signals: SignalsService,
   ) {
-    this.queueName = this.cfg.get<string>('RABBITMQ_XRAY_QUEUE') || 'x-ray';
+    this.queueName = this.cfg.get<string>("RABBITMQ_XRAY_QUEUE") || "x-ray";
   }
 
   @RabbitSubscribe({
-    exchange: '',
-    routingKey: process.env.RABBITMQ_XRAY_QUEUE || 'x-ray',
-    queue: process.env.RABBITMQ_XRAY_QUEUE || 'x-ray',
+    exchange: "",
+    routingKey: process.env.RABBITMQ_XRAY_QUEUE || "x-ray",
+    queue: process.env.RABBITMQ_XRAY_QUEUE || "x-ray",
     queueOptions: { durable: true },
   })
   public async handleXrayMessage(msg: any) {
@@ -27,7 +27,7 @@ export class XrayConsumer {
       await this.signals.ingestXrayMessage(msg);
       this.logger.log(`Saved/Upserted x-ray doc`);
     } catch (e) {
-      this.logger.error('Consumer error', e.stack);
+      this.logger.error("Consumer error", e.stack);
     }
   }
 }

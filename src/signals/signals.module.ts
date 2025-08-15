@@ -1,8 +1,8 @@
-import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
-import { Signal, SignalSchema } from './schemas/signal.schema';
-import { SignalsService } from './signals.service';
-import { SignalsController } from './signals.controller';
+import { Module } from "@nestjs/common";
+import { MongooseModule } from "@nestjs/mongoose";
+import { Signal, SignalSchema } from "./schemas/signal.schema";
+import { SignalsService } from "./signals.service";
+import { SignalsController } from "./signals.controller";
 
 @Module({
   imports: [

@@ -1,10 +1,10 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { FilterQuery, Model } from 'mongoose';
-import { Signal } from './schemas/signal.schema';
-import { QuerySignalDto } from './dto/query-signal.dto';
-import { CreateSignalDto } from './dto/create-signal.dto';
-import { UpdateSignalDto } from './dto/update-signal.dto';
+import { Injectable, Logger } from "@nestjs/common";
+import { InjectModel } from "@nestjs/mongoose";
+import { FilterQuery, Model } from "mongoose";
+import { Signal } from "./schemas/signal.schema";
+import { QuerySignalDto } from "./dto/query-signal.dto";
+import { CreateSignalDto } from "./dto/create-signal.dto";
+import { UpdateSignalDto } from "./dto/update-signal.dto";
 
 @Injectable()
 export class SignalsService {
@@ -20,7 +20,7 @@ export class SignalsService {
     //   }
     // }
 
-    if (!msg || typeof msg !== 'object') return;
+    if (!msg || typeof msg !== "object") return;
 
     const deviceId = Object.keys(msg)[0];
     const payload = msg[deviceId];
@@ -31,7 +31,7 @@ export class SignalsService {
     const data: any[] = Array.isArray(payload.data) ? payload.data : [];
 
     const dataLength = data.length;
-    const dataVolume = Buffer.byteLength(JSON.stringify(payload), 'utf8');
+    const dataVolume = Buffer.byteLength(JSON.stringify(payload), "utf8");
 
     let maxSpeed: number | undefined;
     let avgSpeed: number | undefined;
@@ -42,7 +42,7 @@ export class SignalsService {
             ? Number(row[1][2])
             : undefined,
         )
-        .filter((v) => typeof v === 'number');
+        .filter((v) => typeof v === "number");
 
       if (speeds.length > 0) {
         maxSpeed = Math.max(...speeds);

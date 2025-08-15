@@ -1,8 +1,8 @@
-import { Module } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { RabbitMQModule } from '@golevelup/nestjs-rabbitmq';
-import { XrayConsumer } from './xray.consumer';
-import { SignalsModule } from '../signals/signals.module';
+import { Module } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
+import { RabbitMQModule } from "@golevelup/nestjs-rabbitmq";
+import { XrayConsumer } from "./xray.consumer";
+import { SignalsModule } from "../signals/signals.module";
 
 @Module({
   imports: [
@@ -10,7 +10,7 @@ import { SignalsModule } from '../signals/signals.module';
     RabbitMQModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (cfg: ConfigService) => ({
-        uri: cfg.get<string>('RABBITMQ_URI'),
+        uri: cfg.get<string>("RABBITMQ_URI"),
         connectionInitOptions: { wait: true, timeout: 5000 },
       }),
     }),
