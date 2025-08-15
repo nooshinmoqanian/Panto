@@ -1,0 +1,13 @@
+{
+    "name": "panto-producer",
+    "version": "1.0.0",
+    "type": "module",
+    "dependencies": {
+      "amqplib": "^0.10.3",
+      "dotenv": "^16.4.5"
+    },
+    "scripts": {
+      "send": "node send.js"
+    }
+  }
+  
